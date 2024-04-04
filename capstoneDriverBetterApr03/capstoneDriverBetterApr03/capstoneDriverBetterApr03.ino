@@ -72,9 +72,14 @@ void setup() {
   // Serial.readStringUntil('\n');
   // Serial.print("Ard ready!\n");
   pinMode(enPin, OUTPUT);
+  digitalWrite(enPin, HIGH);
   pinMode(RELAY_PIN_1, OUTPUT);
   pinMode(RELAY_PIN_2, OUTPUT);
   pinMode(RELAY_PIN_3, OUTPUT);
+  digitalWrite(RELAY_PIN_1, LOW);  // close valve 5 seconds
+  digitalWrite(RELAY_PIN_2, LOW);  // close valve 5 seconds
+  digitalWrite(RELAY_PIN_3, LOW);  // close valve 5 seconds
+
   updateStartPositions();
 }
 
@@ -85,14 +90,14 @@ void loop() {
   // Waits for ESP32 I2C to receive full information
   Serial.println("~~~  Waiting for CMD  ~~~");
   while (volumeDesired == 0 || pumpStates == 0) {
-    
+
     static unsigned long lastMillis = 0;  // Remember when we were last called
     unsigned long currentMillis = millis();
 
     // Check if one second has passed (1000 milliseconds)
     if (currentMillis - lastMillis >= 1000) {
       lastMillis = currentMillis;  // Reset the lastMillis to the current time
-      Serial.println(currentMillis);
+      Serial.println(currentMillis / 1000);
 
       // Place the code you want to execute once per second here
       // Serial.println("One second has passed.");
@@ -101,28 +106,35 @@ void loop() {
   Serial.println("~~~  Ready to pump!  ~~~");
   // Check every loop to see if ESP32 has sent a stop command or the next move command
   // read();  // sets next target position
+  executeI2C();
+
   // enable motors
   digitalWrite(enPin, LOW);
   // enable valves
-  digitalWrite(RELAY_PIN_1, LOW);  // close valve 5 seconds
-  digitalWrite(RELAY_PIN_2, LOW);  // close valve 5 seconds
-  digitalWrite(RELAY_PIN_3, LOW);  // close valve 5 seconds
+  digitalWrite(RELAY_PIN_1, LOW);  // open valve 5 seconds
+  digitalWrite(RELAY_PIN_2, LOW);  // open valve 5 seconds
+  digitalWrite(RELAY_PIN_3, LOW);  // open valve 5 seconds
+
+  delay(1000);
 
 
-  executeI2C();
 
-  PumpMiddle.run();  // middle stepper
-  PumpLeft.run();    // left stepper
-  PumpRight.run();   // right stepper
+  while (moving()) {
+    PumpMiddle.run();  // middle stepper
+    PumpLeft.run();    // left stepper
+    PumpRight.run();   // right stepper
+  }
 
   // stopping pumps
   Serial.println("~~~  Stopping pumps!  ~~~");
 
   pumpStates = 0;
   volumeDesired = 0;
-  digitalWrite(RELAY_PIN_1, HIGH);  // open valve 5 seconds
-  digitalWrite(RELAY_PIN_2, HIGH);  // open valve 5 seconds
-  digitalWrite(RELAY_PIN_3, HIGH);  // open valve 5 seconds
+
+  delay(1000);
+  digitalWrite(RELAY_PIN_1, HIGH);  // close valve 5 seconds
+  digitalWrite(RELAY_PIN_2, HIGH);  // close valve 5 seconds
+  digitalWrite(RELAY_PIN_3, HIGH);  // close valve 5 seconds
   // stepper.run() determins whether a signal is due based on target position, acceleration, and speed.
   digitalWrite(enPin, HIGH);
 
@@ -199,18 +211,21 @@ void executeI2C() {
         Serial.print(volumeDesired);
         Serial.println("ml");
         // add rotate function
+        rotateCWLeft(3000.0);
         break;
       case 2:
         Serial.print("Pumping MIDDLE - ");
         Serial.print(volumeDesired);
         Serial.println("ml");
-        // add rotate function
+        // add rotate function to take in entered number
+        rotateCWMiddle(-3000.0);
         break;
       case 4:
         Serial.print("Pumping RIGHT - ");
         Serial.print(volumeDesired);
         Serial.println("ml");
         // add rotate function
+        rotateCWRight(-3000.0);
         break;
     }
   }
@@ -279,7 +294,7 @@ void rotateCWRight(float angle) {
   PumpRight.setMaxSpeed(MAX_SPEED);
   // PumpMiddle.setAcceleration(3 * MAX_SPEED);  // idefka
   // PumpLeft.setAcceleration(3 * MAX_SPEED);
-  PumpRight.setAcceleration(3 * MAX_SPEED);
+  PumpRight.setAcceleration(MAX_SPEED);
 
   // PumpMiddle.move(-angle * radius * stepsPerInch / 57.2957795131);  // 180/pi = 57.blablabla
   // PumpLeft.move(-angle * radius * stepsPerInch / 57.2957795131);
@@ -297,7 +312,7 @@ void rotateCWLeft(float angle) {
   PumpLeft.setMaxSpeed(MAX_SPEED);
   // PumpRight.setMaxSpeed(MAX_SPEED);
   // PumpMiddle.setAcceleration(3 * MAX_SPEED);  // idefka
-  PumpLeft.setAcceleration(3 * MAX_SPEED);
+  PumpLeft.setAcceleration(MAX_SPEED);
   // PumpRight.setAcceleration(3 * MAX_SPEED);
 
   // PumpMiddle.move(-angle * radius * stepsPerInch / 57.2957795131);  // 180/pi = 57.blablabla
@@ -315,7 +330,7 @@ void rotateCWMiddle(float angle) {
   PumpMiddle.setMaxSpeed(MAX_SPEED);
   // PumpLeft.setMaxSpeed(MAX_SPEED);
   // PumpRight.setMaxSpeed(MAX_SPEED);
-  PumpMiddle.setAcceleration(3 * MAX_SPEED);
+  PumpMiddle.setAcceleration(MAX_SPEED);
   // PumpLeft.setAcceleration(3 * MAX_SPEED);
   // PumpRight.setAcceleration(3 * MAX_SPEED);
 
