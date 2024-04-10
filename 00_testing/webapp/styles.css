@@ -1,0 +1,83 @@
+/* Reset margins and paddings for consistency across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%; /* Set the minimum height to the full viewport */
+    font-family: Arial, sans-serif;
+    background-color: #285c33; /* Green background for the body */
+    color: #F8F8FF; /* Off white text color */
+  }
+  
+  /* Flexbox centering for the container */
+  body {
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    text-align: center; /* Center text for any direct children */
+  }
+  
+  .container {
+    max-width: 600px;
+    width: 100%; /* Makes the container take up to 100% of the body width */
+    padding: 20px;
+    background-color: #4b4c4b; /* Dark gray background for the container */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* A subtle shadow to lift the container */
+    border-radius: 10px; /* Rounded corners for the container */
+    margin: 20px; /* Provides a little space from viewport edges */
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"] {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white for inputs */
+    color: #4b4c4b; /* Text color to match the container */
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #2fa72f; /* Sample green color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #006400; /* A darker shade for hover state */
+  }
+  
+  .title {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center; /* Ensure titles are centered */
+    color: #F8F8FF; /* Off white text color for titles */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    input[type="text"], button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  
+  /* Center the logo */
+  .logo {
+    display: block;
+    margin-bottom: 20px;
+    max-width: 100%; /* Ensures the logo is responsive and fits the container */
+    height: auto; /* Maintains the aspect ratio of the image */
+  }
+  

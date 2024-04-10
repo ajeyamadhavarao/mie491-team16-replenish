@@ -3,33 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Replenish</title>
+<title>Replenish - Liquid Dispensing Solutions</title>
+<link rel="icon" type="image/x-icon" href="src/icon.ico">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h2>Replenish - Liquid Dispensing Solutions</h2>
-
-<div>
-  <input type="text" id="dataInput1" placeholder="Enter Volume">
-  <button onclick="writeData1()">Submit</button>
+<div class="container">
+  <img src="src/logo-png.png" alt="Replenish Logo" class="logo">
+  
+  <h2>Replenish - Liquid Dispensing Solutions</h2>
+  
+  <div class="form-group">
+    <div class="title">Liquid 1 Volume</div>
+    <input type="text" id="dataInput1" placeholder="Enter Volume for Liquid 1">
+    <button onclick="writeData1()">Dispense 1</button>
+  </div>
+  <div class="form-group">
+    <div class="title">Liquid 2 Volume</div>
+    <input type="text" id="dataInput2" placeholder="Enter Volume for Liquid 2">
+    <button onclick="writeData2()">Dispense 2</button>
+  </div>
+  <div class="form-group">
+    <div class="title">Liquid 3 Volume</div>
+    <input type="text" id="dataInput3" placeholder="Enter Volume for Liquid 3">
+    <button onclick="writeData3()">Dispense 3</button>
+  </div>
 </div>
-<div>
-  <input type="text" id="dataInput2" placeholder="Enter Volume">
-  <button onclick="writeData2()">Submit</button>
-</div>
-<div>
-  <input type="text" id="dataInput3" placeholder="Enter Volume">
-  <button onclick="writeData3()">Submit</button>
-</div>
 
-<!-- <div id="dataDisplay"></div> -->
-
-<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
-
-<!-- Add Firebase database -->
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
-
 <script src="app.js"></script>
 </body>
 </html>
