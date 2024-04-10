@@ -18,24 +18,38 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 // Function to write data
-function writeData() {
-    var data = document.getElementById('dataInput').value;
-    var intValue = parseInt(data); // Make sure to convert string to integer
+function writeData1() {
+    var data1 = document.getElementById('dataInput1').value;
+    var intValue1 = parseInt(data1); // Make sure to convert string to integer
   
     // Using set() will overwrite data at the location
-    database.ref('pump/left/').update({intValue});
+    database.ref('pump/left/').update({intValue1});
   
     // If you want to create a unique entry with an integer, use push() like this:
     // database.ref('data/').push(intValue);
-    document.getElementById('dataInput').value = ''; // Clear input after submit
+    document.getElementById('dataInput1').value = ''; // Clear input after submit
 }
 
-// Function to read data
-database.ref('pump/left/').on('value', function(snapshot) {
-var display = document.getElementById('dataDisplay');
-display.innerHTML = ''; // Clear previous data
-snapshot.forEach(function(childSnapshot) {
-    var childData = childSnapshot.val();
-    display.innerHTML += childData.content + '<br>';
-});
-});
+function writeData2() {
+    var data2 = document.getElementById('dataInput2').value;
+    var intValue2 = parseInt(data2); // Make sure to convert string to integer
+  
+    // Using set() will overwrite data at the location
+    database.ref('pump/middle/').update({intValue2});
+  
+    // If you want to create a unique entry with an integer, use push() like this:
+    // database.ref('data/').push(intValue);
+    document.getElementById('dataInput2').value = ''; // Clear input after submit
+}
+function writeData3() {
+    var data3 = document.getElementById('dataInput3').value;
+    var intValue3 = parseInt(data3); // Make sure to convert string to integer
+  
+    // Using set() will overwrite data at the location
+    database.ref('pump/right/').update({intValue3});
+  
+    // If you want to create a unique entry with an integer, use push() like this:
+    // database.ref('data/').push(intValue);
+    document.getElementById('dataInput3').value = ''; // Clear input after submit
+}
+

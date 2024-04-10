@@ -3,18 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Firebase App</title>
+<title>Replenish</title>
 </head>
 <body>
 
-<h2>Firebase Realtime Database</h2>
+<h2>Replenish - Liquid Dispensing Solutions</h2>
 
 <div>
-  <input type="text" id="dataInput" placeholder="Enter some data">
-  <button onclick="writeData()">Submit</button>
+  <input type="text" id="dataInput1" placeholder="Enter Volume">
+  <button onclick="writeData1()">Submit</button>
+</div>
+<div>
+  <input type="text" id="dataInput2" placeholder="Enter Volume">
+  <button onclick="writeData2()">Submit</button>
+</div>
+<div>
+  <input type="text" id="dataInput3" placeholder="Enter Volume">
+  <button onclick="writeData3()">Submit</button>
 </div>
 
-<div id="dataDisplay"></div>
+<!-- <div id="dataDisplay"></div> -->
 
 <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
