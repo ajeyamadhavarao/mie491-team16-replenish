@@ -7,9 +7,19 @@
   
   html, body {
     height: 100%; /* Set the minimum height to the full viewport */
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
     background-color: #285c33; /* Green background for the body */
     color: #F8F8FF; /* Off white text color */
+  }
+  h2 {
+    margin-bottom: 16px; /* Adjust the space below the h2 heading */
+    /* Other styling for h2 */
+  }
+  
+  h3 {
+    margin-bottom: 24px; /* Add space below the h3 element */
+    color: #F8F8FF; /* Use the off-white color for text */
+    font-weight: normal; /* If you want a lighter font-weight than bold */
   }
   
   /* Flexbox centering for the container */
