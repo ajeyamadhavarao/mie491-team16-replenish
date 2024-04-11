@@ -210,21 +210,21 @@ void executeI2C() {
         Serial.print(volumeDesired);
         Serial.println("ml");
         // add rotate function
-        rotateCWLeft(3000.0);
+        rotateCWLeft(volumeDesired*40);
         break;
       case 2:
         Serial.print("Pumping MIDDLE - ");
         Serial.print(volumeDesired);
         Serial.println("ml");
         // add rotate function to take in entered number
-        rotateCWMiddle(-3000.0);
+        rotateCWMiddle(-volumeDesired*40);
         break;
       case 4:
         Serial.print("Pumping RIGHT - ");
         Serial.print(volumeDesired);
         Serial.println("ml");
         // add rotate function
-        rotateCWRight(-3000.0);
+        rotateCWRight(-volumeDesired*40);
         break;
     }
   }

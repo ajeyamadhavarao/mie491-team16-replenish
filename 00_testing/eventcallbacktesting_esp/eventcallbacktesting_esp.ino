@@ -74,13 +74,18 @@ void setup() {
   Firebase.begin(&config, &auth);
   Firebase.reconnectWiFi(true);
 
-  // Set listener for pump selection
+  // // Set listener for pump selection
 
-  //FOR TESTING USE LEFT FOR ALL PUMPS - CHANGE LATER
-  Firebase.setStreamCallback(firebaseData, "pump/left/intValue1", onPumpSelectionChanged, nullptr);
+  // //FOR TESTING USE LEFT FOR ALL PUMPS - CHANGE LATER
+  // Firebase.setStreamCallback(firebaseData, "pump/left/intValue1", onPumpSelectionChanged, nullptr);
 
-  // Set listener for volume input
-  Firebase.setStreamCallback(firebaseData, "pump/vol", onVolumeInputChanged, nullptr);
+  // // Set listener for volume input
+  // Firebase.setStreamCallback(firebaseData, "pump/vol", onVolumeInputChanged, nullptr);
+
+  if (!Firebase.beginStream(firebaseData, "pump/left/intValue1") && !Firebase.beginStream(firebaseData, "pump/vol")) {
+    Serial.println("Could not begin stream");
+    Serial.println(firebaseData.errorReason());
+  }
 
 
   // I2C Communication with Devices
@@ -91,36 +96,18 @@ void setup() {
 
 void loop() {
 
-  // if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 1000 || sendDataPrevMillis == 0)) {
-
-  //   sendDataPrevMillis = millis();
-  //   Serial.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-  //   // writeMillis();
-  //   while (getPumpSelection() == 0) {
-  //     ;
-  //   }
-  //   int pumpSelected = getPumpSelection();
-  //   sendCommandtoArduino(pumpSelected);
-
-  //   while (getVolumeSelection() == 0) {
-  //     ;
-  //   }
-  //   int volumeInput = getVolumeSelection();
-  //   sendCommandtoArduino(volumeInput);
-
-  //   resetPumpSelection();
-  //   resetVolSelection();
-
-  //   Serial.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-  // }
-
-
-  if (!Firebase.ready()) {
-    Serial.println("Reconnecting to Firebase");
-    Firebase.reconnectWiFi(true);
+  if (Firebase.readStream(firebaseData)) {
+    if (firebaseData.streamAvailable()) {
+      if(firebaseData.dataType() == "int") {
+        int value = firebaseData.intData(); // Use this value as needed
+        // Call your handling function directly with the value
+        // For example: sendCommandtoArduino(value);
+      }
+    }
+  } else if (firebaseData.streamTimeout()) {
+    Serial.println("Stream timeout, reconnecting...");
+    // Handle timeout, possibly by restarting the stream
   }
-  delay(10);
 }
 
 void onPumpSelectionChanged(FirebaseData &data) {

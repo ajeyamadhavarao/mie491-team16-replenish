@@ -120,7 +120,6 @@ void loop() {
 
 
   while (moving()) {
-    // Serial.println("_");
     PumpMiddle.run();  // middle stepper
     PumpLeft.run();    // left stepper
     PumpRight.run();   // right stepper
@@ -128,8 +127,10 @@ void loop() {
 
   // stopping pumps
   Serial.println("~~~  Stopping pumps!  ~~~");
+
   pumpStates = 0;
   volumeDesired = 0;
+
   delay(1000);
   digitalWrite(RELAY_PIN_1, HIGH);  // close valve 5 seconds
   digitalWrite(RELAY_PIN_2, HIGH);  // close valve 5 seconds
@@ -293,7 +294,7 @@ void rotateCWRight(float angle) {
   PumpRight.setMaxSpeed(MAX_SPEED);
   // PumpMiddle.setAcceleration(3 * MAX_SPEED);  // idefka
   // PumpLeft.setAcceleration(3 * MAX_SPEED);
-  PumpRight.setAcceleration(3*MAX_SPEED);
+  PumpRight.setAcceleration(MAX_SPEED);
 
   // PumpMiddle.move(-angle * radius * stepsPerInch / 57.2957795131);  // 180/pi = 57.blablabla
   // PumpLeft.move(-angle * radius * stepsPerInch / 57.2957795131);
@@ -311,7 +312,7 @@ void rotateCWLeft(float angle) {
   PumpLeft.setMaxSpeed(MAX_SPEED);
   // PumpRight.setMaxSpeed(MAX_SPEED);
   // PumpMiddle.setAcceleration(3 * MAX_SPEED);  // idefka
-  PumpLeft.setAcceleration(3*MAX_SPEED);
+  PumpLeft.setAcceleration(MAX_SPEED);
   // PumpRight.setAcceleration(3 * MAX_SPEED);
 
   // PumpMiddle.move(-angle * radius * stepsPerInch / 57.2957795131);  // 180/pi = 57.blablabla
@@ -329,7 +330,7 @@ void rotateCWMiddle(float angle) {
   PumpMiddle.setMaxSpeed(MAX_SPEED);
   // PumpLeft.setMaxSpeed(MAX_SPEED);
   // PumpRight.setMaxSpeed(MAX_SPEED);
-  PumpMiddle.setAcceleration(3*MAX_SPEED);
+  PumpMiddle.setAcceleration(MAX_SPEED);
   // PumpLeft.setAcceleration(3 * MAX_SPEED);
   // PumpRight.setAcceleration(3 * MAX_SPEED);
 
