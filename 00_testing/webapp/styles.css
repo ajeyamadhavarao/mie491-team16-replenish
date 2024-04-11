@@ -39,6 +39,12 @@
     border-radius: 10px; /* Rounded corners for the container */
     margin: 20px; /* Provides a little space from viewport edges */
   }
+  .container {
+    width: 100%;
+    max-width: 400px; /* Adjust the max-width as needed */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+  }
   
   .form-group {
     margin-bottom: 20px;
@@ -89,5 +95,134 @@
     margin-bottom: 20px;
     max-width: 100%; /* Ensures the logo is responsive and fits the container */
     height: auto; /* Maintains the aspect ratio of the image */
+    
   }
   
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px; /* Width of the switch */
+    height: 34px; /* Height of the switch */
+    /* Other styles remain the same... */
+  }
+  
+  /* Style for the volume input to accommodate four-digit integers */
+  .volume-input {
+    width: 100px; /* Set width to fit four digits */
+    padding: 10px; /* Padding for aesthetics */
+    margin-top: 5px; /* Spacing from the title */
+    font-size: 16px; /* Increase font size for better visibility */
+    text-align: center; /* Center the text */
+    /* Other styles remain the same... */
+  }
+  /* The slider - off state */
+.slider {
+  /* existing styles */
+}
+
+/* The slider - on state */
+.slider.on {
+  background-color: #2196F3; /* Background color when the switch is turned on */
+}
+
+/* The toggle knob - off state */
+.slider:before {
+  /* existing styles */
+}
+
+/* The toggle knob - on state */
+.slider.on:before {
+  transform: translateX(26px); /* Moves the knob to the right */
+}
+
+@media (max-width: 768px) {
+  /* Styles for tablet and below */
+  .form-group {
+    margin-bottom: 20px; /* Increase spacing */
+  }
+
+  .title,
+  .switch {
+    /* Increase font size for better readability on smaller screens */
+    font-size: 18px; /* Adjust as needed */
+  }
+
+  .volume-input,
+  #dispenseButton {
+    width: 100%; /* Full width for smaller devices */
+    margin-top: 10px; /* Add some space above for clarity */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Styles for mobile devices */
+  .title {
+    font-size: 16px; /* Slightly smaller font size for mobile */
+  }
+  
+  /* Adjust the slider size for mobile */
+  .slider.round {
+    width: 50px; /* Adjust the width as needed */
+    height: 25px; /* Adjust the height as needed */
+  }
+
+  .slider.round:before {
+    width: 23px; /* Adjust the width as needed */
+    height: 23px; /* Adjust the height as needed */
+  }
+}

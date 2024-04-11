@@ -16,25 +16,35 @@
   <h3>MIE491 Capstone Design - Team 16 - Replenish</h3>
   
   <div class="form-group">
-    <div class="title">Dish Soap</div>
-    <input type="text" id="dataInput1" placeholder="Enter 1 for Dish Soap">
-    <button onclick="writeData1()">Dispense</button>
+    <label class="title">Left Pump</label>
+    <label class="switch">
+      <input type="checkbox" id="toggle1">
+      <span class="slider round"></span>
+    </label>
   </div>
+  
   <div class="form-group">
-    <div class="title">Engine Oil</div>
-    <input type="text" id="dataInput2" placeholder="Enter 1 for Engine Oil">
-    <button onclick="writeData2()">Dispense</button>
+    <label class="title">Middle Pump</label>
+    <label class="switch">
+      <input type="checkbox" id="toggle2">
+      <span class="slider round"></span>
+    </label>
   </div>
+  
   <div class="form-group">
-    <div class="title">Hand Soap</div>
-    <input type="text" id="dataInput3" placeholder="Enter 1 for Hand Soap">
-    <button onclick="writeData3()">Dispense</button>
+    <label class="title">Right Pump</label>
+    <label class="switch">
+      <input type="checkbox" id="toggle3">
+      <span class="slider round"></span>
+    </label>
   </div>
+  
   <div class="form-group">
-    <div class="title">Volume</div>
-    <input type="text" id="dataInput4" placeholder="Enter Volume">
-    <button onclick="writeData4()">Dispense</button>
+    <label class="title">Volume</label>
+    <input type="text" id="dataInput4" class="volume-input" placeholder="Enter Volume">
+    <button id="dispenseButton">Dispense!</button>
   </div>
+  
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
