@@ -52,4 +52,15 @@ function writeData3() {
     // database.ref('data/').push(intValue);
     document.getElementById('dataInput3').value = ''; // Clear input after submit
 }
+function writeData4() {
+    var data4 = document.getElementById('dataInput4').value;
+    var intValue4 = parseInt(data4); // Make sure to convert string to integer
+  
+    // Using set() will overwrite data at the location
+    database.ref('pump/vol/').update({intValue4});
+  
+    // If you want to create a unique entry with an integer, use push() like this:
+    // database.ref('data/').push(intValue);
+    document.getElementById('dataInput4').value = ''; // Clear input after submit
+}
 
