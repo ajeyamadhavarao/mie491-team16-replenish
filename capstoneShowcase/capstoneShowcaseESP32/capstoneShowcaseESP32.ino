@@ -15,8 +15,8 @@
 #include "addons/RTDBHelper.h"
 
 // Insert your network credentials
-#define WIFI_SSID "2201"
-#define WIFI_PASSWORD "Gupta4512#"
+#define WIFI_SSID "XPS15"
+#define WIFI_PASSWORD "watermelon12"
 
 // Insert Firebase project API Key
 #define API_KEY "AIzaSyBqpEv0CFXZ1mjvodzJqX1AsCsJUNAkn9Q"
@@ -92,7 +92,7 @@ void loop() {
     sendDataPrevMillis = millis();
     Serial.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-    // writeMillis();
+    writeMillis();
     while (getPumpSelection() == 0) {
       ;
     }
