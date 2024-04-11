@@ -314,10 +314,10 @@ void rotateCWLeft(float angle) {
   moves[2] = angle;
 
   // PumpMiddle.setMaxSpeed(MAX_SPEED);
-  PumpLeft.setMaxSpeed(MAX_SPEED);
+  PumpLeft.setMaxSpeed(MAX_SPEED/2);
   // PumpRight.setMaxSpeed(MAX_SPEED);
   // PumpMiddle.setAcceleration(3 * MAX_SPEED);  // idefka
-  PumpLeft.setAcceleration(3 * MAX_SPEED);
+  PumpLeft.setAcceleration(MAX_SPEED);
   // PumpRight.setAcceleration(3 * MAX_SPEED);
 
   // PumpMiddle.move(-angle * radius * stepsPerInch / 57.2957795131);  // 180/pi = 57.blablabla
