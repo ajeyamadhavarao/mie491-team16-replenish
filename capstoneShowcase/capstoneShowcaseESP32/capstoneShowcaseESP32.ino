@@ -127,7 +127,7 @@ This function takes return an int value for the pump request
       Serial.println(leftPump);
     }
   }
-  delay(500);
+  delay(500); // delays to ensure smooth loop through the RTDB
   if (Firebase.RTDB.getInt(&fbdo, "/pump/middle/value")) {
     if (fbdo.dataType() == "int") {
       middlePump = fbdo.intData();
@@ -135,7 +135,7 @@ This function takes return an int value for the pump request
       Serial.println(middlePump);
     }
   }
-  delay(500);
+  delay(500); // delays to ensure smooth loop through the RTDB
   if (Firebase.RTDB.getInt(&fbdo, "/pump/right/value")) {
     if (fbdo.dataType() == "int") {
       rightPump = fbdo.intData();
@@ -143,7 +143,7 @@ This function takes return an int value for the pump request
       Serial.println(rightPump);
     }
   }
-  delay(500);
+  delay(500); // delays to ensure smooth loop through the RTDB
   int safety_counter = leftPump + middlePump + rightPump;
   if (safety_counter > 1) {
     return 0;
@@ -165,7 +165,7 @@ int getVolumeSelection() {
 This function takes return an int value for the volume request
 */
   int volumeDesired = 0;
-  delay(1500);
+  delay(1500); // delays to ensure smooth loop through the RTDB
   if (Firebase.RTDB.getInt(&fbdo, "/pump/vol/value")) {
     if (fbdo.dataType() == "int") {
       volumeDesired = fbdo.intData();

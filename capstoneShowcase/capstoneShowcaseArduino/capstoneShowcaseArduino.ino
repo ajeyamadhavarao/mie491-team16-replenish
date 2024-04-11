@@ -191,13 +191,14 @@ void receiveI2C(int bytesReceived) {
       //   Serial.print("volumeDesired is ");
       //   Serial.println(volumeDesired);
       //   break;
-      default:
-        // ready = false;
-        pumpStates = 0;
-        volumeDesired = 0;
-        Serial.print("defaulted to ");
-        Serial.println(volumeDesired);
+      // default:
+      //   // ready = false;
+      //   pumpStates = 0;
+      //   volumeDesired = 0;
+      //   Serial.print("defaulted to ");
+      //   Serial.println(volumeDesired);
     }
+    // anything more than 4 is volume as 1,2,4 are pump states
     if (receivedValue > 4) {
       volumeDesired = receivedValue;
       Serial.print("volumeDesired is ");
