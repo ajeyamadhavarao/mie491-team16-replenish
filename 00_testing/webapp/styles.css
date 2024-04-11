@@ -34,7 +34,7 @@
     max-width: 600px;
     width: 100%; /* Makes the container take up to 100% of the body width */
     padding: 20px;
-    background-color: #4b4c4b; /* Dark gray background for the container */
+    background-color: #4c4c5c; /* Dark gray background for the container */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* A subtle shadow to lift the container */
     border-radius: 10px; /* Rounded corners for the container */
     margin: 20px; /* Provides a little space from viewport edges */
